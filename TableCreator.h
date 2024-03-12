@@ -8,6 +8,7 @@ using namespace std;
 class  TableCreator : public ifccBaseVisitor {
 	public:
 	int adresse=-4;
+    int end=-4;
 	map<string,int> varAdresse;
 	map<string,int> varList;
 	map<string,int> usedVarList;
@@ -21,6 +22,6 @@ class  TableCreator : public ifccBaseVisitor {
   	virtual antlrcpp::Any visitAddplus(ifccParser::AddplusContext *ctx) override;
   	virtual antlrcpp::Any visitValue(ifccParser::ValueContext *ctx) override;
   	virtual antlrcpp::Any visitMore(ifccParser::MoreContext *ctx) override;
-
+	virtual antlrcpp::Any visitFonction(ifccParser::FonctionContext *ctx) override;
 };
 

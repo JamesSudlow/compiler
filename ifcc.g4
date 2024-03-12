@@ -5,7 +5,7 @@ axiom : prog EOF ;
 prog : 'int' 'main' '(' ')' '{' formule return_stmt '}' ;
 
 return_stmt: RETURN expr ';' ;
-formule: 'int' deca ';' formule|'int' dec ';' formule| ass formule|;
+formule: 'int' deca ';' formule|'int' dec ';' formule| ass formule|fonction formule|;
 more: ',' dec|',' deca|;
 dec:  VAR more;
 deca: VAR '=' expr more;
@@ -15,6 +15,7 @@ expr: '(' expr ')' # par
 | expr OP=('+' | '-')  expr # addplus
 | val #value
 ;
+fonction: Name=('putchar('|'other')expr');'|Name=('getchar('|'other')VAR');';
 RETURN : 'return' ;
 val: CONST | VAR;
 CONST : [0-9]+ ;

@@ -6,11 +6,15 @@ antlrcpp::Any CodeGenVisitor::visitProg(ifccParser::ProgContext *ctx)
     cout<< " main: \n" ;
     cout<<"    pushq %rbp\n";
     cout<<"    movq %rsp, %rbp\n";
+	//need to increment address in table creator.
+	cout<<"	subq	$"<<-1*(end/16-1)*16+8<<", %rsp"<<endl;
+
     this->visit( ctx->formule());
     this->visit( ctx->return_stmt() );
     cout<<"    popq %rbp\n";   
     cout<<"    ret\n";
-    return 0;
+	
+	return 0;
 }
 
 
@@ -106,3 +110,15 @@ antlrcpp::Any CodeGenVisitor::visitAss(ifccParser::AssContext *ctx){
   	antlrcpp::Any CodeGenVisitor::visitValue(ifccParser::ValueContext *ctx) {
     	return 	this->visit(ctx->val());
   	}
+  	antlrcpp::Any CodeGenVisitor::visitFonction(ifccParser::FonctionContext *ctx) {
+		if(ctx->Name->getText()=="putchar("){
+			if(ctx->expr()!=nullptr){
+				int memVal=this->visit(ctx->expr());
+				cout<<" movl "<<memVal<<"(%rbp), %eax"<<endl;
+				cout<<"	movl	%eax, %edi"<<endl;
+				cout<<"	call	putchar@PLT"<<endl;
+				return 0;
+			}
+		}
+		return 0;
+	}

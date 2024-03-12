@@ -14,12 +14,14 @@ public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
-    RETURN = 15, CONST = 16, VAR = 17, COMMENT = 18, DIRECTIVE = 19, WS = 20
+    T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, RETURN = 19, CONST = 20, 
+    VAR = 21, COMMENT = 22, DIRECTIVE = 23, WS = 24
   };
 
   enum {
     RuleAxiom = 0, RuleProg = 1, RuleReturn_stmt = 2, RuleFormule = 3, RuleMore = 4, 
-    RuleDec = 5, RuleDeca = 6, RuleAss = 7, RuleExpr = 8, RuleVal = 9
+    RuleDec = 5, RuleDeca = 6, RuleAss = 7, RuleExpr = 8, RuleFonction = 9, 
+    RuleVal = 10
   };
 
   ifccParser(antlr4::TokenStream *input);
@@ -41,6 +43,7 @@ public:
   class DecaContext;
   class AssContext;
   class ExprContext;
+  class FonctionContext;
   class ValContext; 
 
   class  AxiomContext : public antlr4::ParserRuleContext {
@@ -90,6 +93,7 @@ public:
     FormuleContext *formule();
     DecContext *dec();
     AssContext *ass();
+    FonctionContext *fonction();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
@@ -201,6 +205,20 @@ public:
 
   ExprContext* expr();
   ExprContext* expr(int precedence);
+  class  FonctionContext : public antlr4::ParserRuleContext {
+  public:
+    antlr4::Token *Name = nullptr;;
+    FonctionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ExprContext *expr();
+    antlr4::tree::TerminalNode *VAR();
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  FonctionContext* fonction();
+
   class  ValContext : public antlr4::ParserRuleContext {
   public:
     ValContext(antlr4::ParserRuleContext *parent, size_t invokingState);

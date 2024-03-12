@@ -7,6 +7,8 @@ using namespace std;
 class  CodeGenVisitor : public ifccBaseVisitor {
 	public:
     int adresse;
+    int end;
+
     map<string,int> varAdresse;
     virtual antlrcpp::Any visitProg(ifccParser::ProgContext *ctx) override ;
     virtual antlrcpp::Any visitReturn_stmt(ifccParser::Return_stmtContext *ctx) override;
@@ -19,6 +21,7 @@ class  CodeGenVisitor : public ifccBaseVisitor {
   	virtual antlrcpp::Any visitAddplus(ifccParser::AddplusContext *ctx) override;
   	virtual antlrcpp::Any visitValue(ifccParser::ValueContext *ctx) override;
   	virtual antlrcpp::Any visitMore(ifccParser::MoreContext *ctx) override;
+	virtual antlrcpp::Any visitFonction(ifccParser::FonctionContext *ctx) override;
 
 };
 

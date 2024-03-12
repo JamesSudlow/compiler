@@ -43,6 +43,8 @@ public:
 
     virtual antlrcpp::Any visitAddplus(ifccParser::AddplusContext *context) = 0;
 
+    virtual antlrcpp::Any visitFonction(ifccParser::FonctionContext *context) = 0;
+
     virtual antlrcpp::Any visitVal(ifccParser::ValContext *context) = 0;
 
 

@@ -14,6 +14,7 @@ antlrcpp::Any TableCreator::visitDec(ifccParser::DecContext *ctx)
 		varList.insert({name,0});
 		varAdresse.insert({name,adresse});
 		adresse+=-4;
+		end+=-4;
 	}
 	this->visit(ctx->more());
     return 0;
@@ -29,6 +30,7 @@ antlrcpp::Any TableCreator::visitDeca(ifccParser::DecaContext *ctx) {
 		varList.insert({name,this->visit(ctx->expr())});
 		varAdresse.insert({name,adresse});
 		adresse+=-4;
+		end+=-4;
 	}
 	this->visit(ctx->more());
     return 0;
@@ -83,9 +85,7 @@ antlrcpp::Any TableCreator::visitReturn_stmt(ifccParser::Return_stmtContext *ctx
 	return 0;
 }
 	antlrcpp::Any TableCreator::visitPar(ifccParser::ParContext *ctx) {
-
 		return this->visit(ctx->expr());
-	
 	}
   	antlrcpp::Any TableCreator::visitMultdiv(ifccParser::MultdivContext *ctx) {
 		string s= ctx->OP->getText();
@@ -118,3 +118,13 @@ antlrcpp::Any TableCreator::visitReturn_stmt(ifccParser::Return_stmtContext *ctx
   	antlrcpp::Any TableCreator::visitValue(ifccParser::ValueContext *ctx) {
     	return 	this->visit(ctx->val());
   	}
+  	antlrcpp::Any TableCreator::visitFonction(ifccParser::FonctionContext *ctx) {
+		if(ctx->Name->getText()=="putchar("){
+			if(ctx->expr()!=nullptr){
+				this->visit(ctx->expr());
+				return 0;
+			}
+		}
+		exit(1);
+		return 0;
+	}
