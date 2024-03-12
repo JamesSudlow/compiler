@@ -51,8 +51,10 @@ int main(int argn, const char **argv)
     for(map<string, int >::const_iterator it = v2.usedVarList.begin();it != v2.usedVarList.end(); ++it)
     {
         //cout << it->first << " " << it->second<<"\n";
-        if(it->second==0){
-            cout<<"variable declared but not used :"<< it->first<<endl;
+        if(it->second<=0){
+            cerr<<"variable declared but not used :"<< it->first<<endl;
+        	exit(1);
+
         }
     }
     for(map<string, int >::const_iterator it = v2.varAdresse.begin();it != v2.varAdresse.end(); ++it)

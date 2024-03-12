@@ -1,8 +1,6 @@
 int main(){
-	int a=6/4;
-	int b=2+20/a;
-	int c=(a+b)*3;
-	c=a*b+2;
-	int d=c-b/a;
-	return d;
+	int a=2;
+	int b=3
+	b=a+b
+	return b;
 }

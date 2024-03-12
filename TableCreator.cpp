@@ -4,7 +4,9 @@
 antlrcpp::Any TableCreator::visitDec(ifccParser::DecContext *ctx)
 {
 	if(varList.contains(ctx->VAR()->getText())){
-		cout<<"Declares an already declared variable"<<endl;
+		cerr<<"Declares an already declared variable"<<endl;
+        exit(1);
+
 	}
 	else{
 		string name=ctx->VAR()->getText();
@@ -19,7 +21,8 @@ antlrcpp::Any TableCreator::visitDec(ifccParser::DecContext *ctx)
 antlrcpp::Any TableCreator::visitDeca(ifccParser::DecaContext *ctx) {
 	string name=ctx->VAR()->getText();
 	if(varList.contains(name)){
-		cout<<"Declares an already declared variable"<<endl;
+		cerr<<"Declares an already declared variable"<<endl;
+        exit(1);
 	}
 	else{
 		usedVarList.insert({name,0});
@@ -50,7 +53,9 @@ antlrcpp::Any TableCreator::visitAss(ifccParser::AssContext *ctx){
 
 	}
 	else{
-		cout<<"Sets value to undeclared variable"<<endl;
+		cerr<<"Sets value to undeclared variable"<<endl;
+        exit(1);
+
 	}	
     return 0;
 
@@ -66,7 +71,8 @@ antlrcpp::Any TableCreator::visitVal(ifccParser::ValContext *ctx) {
 			return varList.find(ctx->VAR()->getText())->second;
 		}
 		else{
-			cout<<"Uses variable that's either undeclared or doesn't have a set value"<<endl;
+			cerr<<"Uses variable that's either undeclared or doesn't have a set value"<<endl;
+        	exit(1);
 			return 0;
 
 		}
