@@ -16,7 +16,7 @@ antlrcpp::Any CodeGenVisitor::visitProg(ifccParser::ProgContext *ctx)
 
 antlrcpp::Any CodeGenVisitor::visitReturn_stmt(ifccParser::Return_stmtContext *ctx)
 {
-    int memVal=visit(ctx->val());
+    int memVal=	this->visit(ctx->expr());
     cout<<"    movl "<<memVal<<"(%rbp), %eax\n" ;
     return 0;
 }
@@ -74,7 +74,12 @@ antlrcpp::Any CodeGenVisitor::visitAss(ifccParser::AssContext *ctx){
     		cout<<"    movl "<<a<<"(%rbp), %eax"<<endl;
 			cout<<"	cltd"<<endl;
 			cout<<"	idivl "<<b<<"(%rbp)"<<endl;
-        	cout << "    movl %eax, "<<adresse<<"(%rbp)"<<endl;
+			if(s=="/"){
+        		cout << "    movl %eax, "<<adresse<<"(%rbp)"<<endl;
+			}
+			else{
+        		cout << "    movl %edx, "<<adresse<<"(%rbp)"<<endl;
+			}
 		}
         adresse+=-4;
 		return adresse+4;

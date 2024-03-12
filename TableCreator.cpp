@@ -79,7 +79,7 @@ antlrcpp::Any TableCreator::visitVal(ifccParser::ValContext *ctx) {
     }
 }
 antlrcpp::Any TableCreator::visitReturn_stmt(ifccParser::Return_stmtContext *ctx) {
-	this->visit(ctx->val());
+	this->visit(ctx->expr());
 	return 0;
 }
 	antlrcpp::Any TableCreator::visitPar(ifccParser::ParContext *ctx) {
@@ -94,9 +94,14 @@ antlrcpp::Any TableCreator::visitReturn_stmt(ifccParser::Return_stmtContext *ctx
 		if(s=="*"){
 			return a*b;
 		}
-		else{
+		if(s=="/"){
 			return a/b;
 		}
+		if(s=="%"){
+			return a%b;
+		}
+		exit(1);
+		return 0;
   	}
 	antlrcpp::Any TableCreator::visitAddplus(ifccParser::AddplusContext *ctx) {
 		string s= ctx->OP->getText();
