@@ -13,6 +13,7 @@ antlrcpp::Any TableCreator::visitDec(ifccParser::DecContext *ctx)
 		varAdresse.insert({name,adresse});
 		adresse+=-4;
 	}
+	this->visit(ctx->more());
     return 0;
 }
 antlrcpp::Any TableCreator::visitDeca(ifccParser::DecaContext *ctx) {
@@ -26,8 +27,18 @@ antlrcpp::Any TableCreator::visitDeca(ifccParser::DecaContext *ctx) {
 		varAdresse.insert({name,adresse});
 		adresse+=-4;
 	}
+	this->visit(ctx->more());
     return 0;
 }
+  antlrcpp::Any TableCreator::visitMore(ifccParser::MoreContext *ctx){
+	if(ctx->dec()!=nullptr){
+		this->visit(ctx->dec());
+	}
+	if(ctx->deca()!=nullptr){
+		this->visit(ctx->deca());
+	}
+	return 0;
+  }
 antlrcpp::Any TableCreator::visitAss(ifccParser::AssContext *ctx){
 	string name=ctx->VAR()->getText();
 	if(varList.contains(name)){

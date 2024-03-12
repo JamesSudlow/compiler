@@ -47,6 +47,16 @@ public interface ifccListener extends ParseTreeListener {
 	 */
 	void exitFormule(ifccParser.FormuleContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ifccParser#more}.
+	 * @param ctx the parse tree
+	 */
+	void enterMore(ifccParser.MoreContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ifccParser#more}.
+	 * @param ctx the parse tree
+	 */
+	void exitMore(ifccParser.MoreContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ifccParser#dec}.
 	 * @param ctx the parse tree
 	 */
@@ -76,6 +86,54 @@ public interface ifccListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAss(ifccParser.AssContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code par}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPar(ifccParser.ParContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code par}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPar(ifccParser.ParContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code multdiv}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultdiv(ifccParser.MultdivContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code multdiv}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultdiv(ifccParser.MultdivContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code value}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterValue(ifccParser.ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code value}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitValue(ifccParser.ValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code addplus}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddplus(ifccParser.AddplusContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code addplus}
+	 * labeled alternative in {@link ifccParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddplus(ifccParser.AddplusContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ifccParser#val}.
 	 * @param ctx the parse tree

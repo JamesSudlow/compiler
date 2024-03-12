@@ -31,11 +31,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitDec(ifccParser::DecContext *ctx) override {
+  virtual antlrcpp::Any visitMore(ifccParser::MoreContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMorevar(ifccParser::MorevarContext *ctx) override {
+  virtual antlrcpp::Any visitDec(ifccParser::DecContext *ctx) override {
     return visitChildren(ctx);
   }
 

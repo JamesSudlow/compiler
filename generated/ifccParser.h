@@ -18,8 +18,8 @@ public:
   };
 
   enum {
-    RuleAxiom = 0, RuleProg = 1, RuleReturn_stmt = 2, RuleFormule = 3, RuleDec = 4, 
-    RuleMorevar = 5, RuleDeca = 6, RuleAss = 7, RuleExpr = 8, RuleVal = 9
+    RuleAxiom = 0, RuleProg = 1, RuleReturn_stmt = 2, RuleFormule = 3, RuleMore = 4, 
+    RuleDec = 5, RuleDeca = 6, RuleAss = 7, RuleExpr = 8, RuleVal = 9
   };
 
   ifccParser(antlr4::TokenStream *input);
@@ -36,8 +36,8 @@ public:
   class ProgContext;
   class Return_stmtContext;
   class FormuleContext;
+  class MoreContext;
   class DecContext;
-  class MorevarContext;
   class DecaContext;
   class AssContext;
   class ExprContext;
@@ -86,10 +86,10 @@ public:
   public:
     FormuleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    DecContext *dec();
-    FormuleContext *formule();
-    AssContext *ass();
     DecaContext *deca();
+    FormuleContext *formule();
+    DecContext *dec();
+    AssContext *ass();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
@@ -97,12 +97,25 @@ public:
 
   FormuleContext* formule();
 
+  class  MoreContext : public antlr4::ParserRuleContext {
+  public:
+    MoreContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    DecContext *dec();
+    DecaContext *deca();
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  MoreContext* more();
+
   class  DecContext : public antlr4::ParserRuleContext {
   public:
     DecContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *VAR();
-    MorevarContext *morevar();
+    MoreContext *more();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
@@ -110,25 +123,13 @@ public:
 
   DecContext* dec();
 
-  class  MorevarContext : public antlr4::ParserRuleContext {
-  public:
-    MorevarContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *VAR();
-    MorevarContext *morevar();
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  MorevarContext* morevar();
-
   class  DecaContext : public antlr4::ParserRuleContext {
   public:
     DecaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *VAR();
     ExprContext *expr();
+    MoreContext *more();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    

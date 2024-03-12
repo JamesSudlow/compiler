@@ -30,11 +30,24 @@ antlrcpp::Any CodeGenVisitor::visitVal(ifccParser::ValContext *ctx) {
 		return varAdresse.find(ctx->VAR()->getText())->second;	
     }
 }
-
+  antlrcpp::Any CodeGenVisitor::visitMore(ifccParser::MoreContext *ctx){
+	if(ctx->dec()!=nullptr){
+		this->visit(ctx->dec());
+	}
+	if(ctx->deca()!=nullptr){
+		this->visit(ctx->deca());
+	}
+	return 0;
+  }
+antlrcpp::Any CodeGenVisitor::visitDec(ifccParser::DecContext *ctx){
+	this->visit(ctx->more());
+    return 0;
+}
 antlrcpp::Any CodeGenVisitor::visitDeca(ifccParser::DecaContext *ctx){
     int memVal=visit(ctx->expr());
     cout<<"    movl "<<memVal<<"(%rbp), "<<"%eax"<<endl;
     cout<<"    movl "<<"%eax, "<<varAdresse.find(ctx->VAR()->getText())->second<<"(%rbp)"<<endl;
+	this->visit(ctx->more());
     return 0;
 }
 antlrcpp::Any CodeGenVisitor::visitAss(ifccParser::AssContext *ctx){

@@ -27,9 +27,9 @@ public:
 
     virtual antlrcpp::Any visitFormule(ifccParser::FormuleContext *context) = 0;
 
-    virtual antlrcpp::Any visitDec(ifccParser::DecContext *context) = 0;
+    virtual antlrcpp::Any visitMore(ifccParser::MoreContext *context) = 0;
 
-    virtual antlrcpp::Any visitMorevar(ifccParser::MorevarContext *context) = 0;
+    virtual antlrcpp::Any visitDec(ifccParser::DecContext *context) = 0;
 
     virtual antlrcpp::Any visitDeca(ifccParser::DecaContext *context) = 0;
 

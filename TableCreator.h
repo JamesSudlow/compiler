@@ -20,6 +20,7 @@ class  TableCreator : public ifccBaseVisitor {
   	virtual antlrcpp::Any visitMultdiv(ifccParser::MultdivContext *ctx) override;
   	virtual antlrcpp::Any visitAddplus(ifccParser::AddplusContext *ctx) override;
   	virtual antlrcpp::Any visitValue(ifccParser::ValueContext *ctx) override;
+  	virtual antlrcpp::Any visitMore(ifccParser::MoreContext *ctx) override;
 
 };
 
