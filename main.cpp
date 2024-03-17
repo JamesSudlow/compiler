@@ -70,8 +70,9 @@ int main(int argn, const char **argv)
   
   CodeGenVisitor v;
   v.adresse=v2.adresse;
+  v.end=v2.end;
+  //cout<<v2.end;
   v.varAdresse=v2.varAdresse;
   v.visit(tree);
-
   return 0;
 }

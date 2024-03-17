@@ -5,10 +5,13 @@ axiom : prog EOF ;
 prog : 'int' 'main' '(' ')' '{' formule return_stmt '}' ;
 
 return_stmt: RETURN expr ';' ;
-formule: 'int' deca ';' formule|'int' dec ';' formule| ass formule|fonction formule|;
+
+formule: 'int' dec ';' formule | ass formule|fonction formule | 'int' deca';' formule | ;
 more: ',' dec|',' deca|;
 dec:  VAR more;
 deca: VAR '=' expr more;
+
+
 ass: VAR '=' expr ';';
 expr: '(' expr ')' # par
 | expr OP=('*' | '/'| '%') expr # multdiv

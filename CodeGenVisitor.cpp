@@ -7,13 +7,14 @@ antlrcpp::Any CodeGenVisitor::visitProg(ifccParser::ProgContext *ctx)
     cout<<"    pushq %rbp\n";
     cout<<"    movq %rsp, %rbp\n";
 	//need to increment address in table creator.
-	cout<<"	subq	$"<<-1*(end/16-1)*16+8<<", %rsp"<<endl;
+	cout<<"	subq	$"<<-1*(end/16-2)*16<<", %rsp"<<endl;
 
     this->visit( ctx->formule());
     this->visit( ctx->return_stmt() );
-    cout<<"    popq %rbp\n";   
+    cout<<"    movl %ebp, %esp\n";
+	cout<<"	popl %ebp\n";   
     cout<<"    ret\n";
-	
+
 	return 0;
 }
 

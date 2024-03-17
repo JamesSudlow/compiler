@@ -88,6 +88,7 @@ antlrcpp::Any TableCreator::visitReturn_stmt(ifccParser::Return_stmtContext *ctx
 		return this->visit(ctx->expr());
 	}
   	antlrcpp::Any TableCreator::visitMultdiv(ifccParser::MultdivContext *ctx) {
+		end+=-4;
 		string s= ctx->OP->getText();
 		int a=this->visit(ctx->expr(0));
 		int b=this->visit(ctx->expr(1));
@@ -104,6 +105,7 @@ antlrcpp::Any TableCreator::visitReturn_stmt(ifccParser::Return_stmtContext *ctx
 		return 0;
   	}
 	antlrcpp::Any TableCreator::visitAddplus(ifccParser::AddplusContext *ctx) {
+		end+=-4;		
 		string s= ctx->OP->getText();
 		int a=this->visit(ctx->expr(0));
 		int b=this->visit(ctx->expr(1));
